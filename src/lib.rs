@@ -3,7 +3,7 @@ pub use gettid::gettid;
 
 #[macro_export]
 macro_rules! message {
-    ($($arg:tt)*) => {
+    ($($arg:tt)*) => {{
         use std::fs::OpenOptions;
         use std::io::Write;
 
@@ -13,7 +13,7 @@ macro_rules! message {
         if let Ok(mut f) = OpenOptions::new().write(true).append(true).create(true).open("/tmp/debug.txt") {
             writeln!(f, "{}", s).unwrap();
         }
-    }
+    }}
 }
 
 #[macro_export]
